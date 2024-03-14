@@ -1,5 +1,9 @@
-# What is it?
-Integrates ebay api and Barcode reader html to see if a product is profitable quickly.
+# What is it? (MVP work in progress)
+A web application that integrates ebay api and barcode reader html image scanner to see if a product is profitable quickly. 
+
+Features needed: 
+1) Barcode image scanner integration
+2) web camer image scanner itegration
 
 
 
