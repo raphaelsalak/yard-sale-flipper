@@ -3,7 +3,7 @@ A web application that integrates ebay api and barcode reader html image scanner
 
 Features needed: 
 1) Barcode image scanner integration
-2) web camer image scanner itegration
+2) Web camera image scanner integration
 
 
 
