@@ -1,3 +1,12 @@
+# What is it? (MVP work in progress)
+A web application that integrates ebay api and barcode reader html image scanner to see if a product is profitable quickly. 
+
+Features needed: 
+1) Barcode image scanner integration
+2) Web camera image scanner integration
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
