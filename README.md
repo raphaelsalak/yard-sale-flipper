@@ -2,8 +2,8 @@
 A web application that integrates ebay api and barcode reader html image scanner to see if a product is profitable quickly. 
 
 Features needed: 
-[x] Barcode image scanner integration
-[x] Web camera image scanner integration
+- [x] Barcode image scanner integration
+- [x] Web camera image scanner integration
 
 
 
