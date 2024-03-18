@@ -56,22 +56,26 @@ export default function Home() {
   return (
   <>
     <div className="center-container">
-      <input
-        className="input-field"
-        type="number"
-        value={offerValue}
-        onChange={handleOfferChange}
-        placeholder="enter offer"> 
-      </input>
-      <div className="card-container">
-        <input
-          className="input-field"
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="enter product name"> 
-        </input>
-        <button className="submit-button" onClick={handleButtonClick}>submit</button>
+      <div className="input-container">
+        <div className="container2">
+          <div className="container3">
+            <input
+              className="input-field"
+              type="number"
+              value={offerValue}
+              onChange={handleOfferChange}
+              placeholder="enter offer"> 
+            </input>
+            <input
+              className="input-field"
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="enter product name"> 
+            </input>
+          </div>
+          <button className="submit-button" onClick={handleButtonClick}>submit</button>
+        </div>
       </div>
       <Html5QrcodePlugin
         fps={10}
@@ -79,15 +83,17 @@ export default function Home() {
         disableFlip={false}
         qrCodeSuccessCallback={onNewScanResult}
       />
+      {sortedData && <p className="p-text">{inputValue + '\'s being sold right now'}</p>}
       <div className="card-container">      
         {sortedData?.map(item => (
           <div key={item.itemId} className="card">
             <img src={item.image.imageUrl} alt="Item" />
             <p>{item.price.value} {item.price.currency}</p>
           </div>
-      ))}
+        ))}
       </div>
-      <p>Profit: {profit}</p>
+      {profit ? (<p className="p-text">Potential Profit: {profit}</p>
+      ) : (<p></p>)}
     </div>
   </>
    
