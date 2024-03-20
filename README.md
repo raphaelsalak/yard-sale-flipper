@@ -1,4 +1,4 @@
-# What is it? (MVP work in progress)
+# What is it? (MVP)
 A web application that integrates ebay api and barcode reader html image scanner to see if a product is profitable quickly. 
 
 Features added:
