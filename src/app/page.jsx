@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./assets/styles.css" 
 import Html5QrcodePlugin from "./Html5QrcodePlugin"
 export default function Home() { 
@@ -9,6 +9,20 @@ export default function Home() {
   const [data, setData] = useState(null) 
   const [decodedText, setDecodedText] = useState('')
   const [profit, setProfit] = useState('')
+  const [sortedData, setSortedData] = useState([])
+  const [boolArr, setBoolArray] = useState(false)
+
+  useEffect(() => {
+    if(data){
+      setSortedData(data?.itemSummaries.sort((a, b) => {
+        const priceA = parseFloat(a.price.value);
+        const priceB = parseFloat(b.price.value);
+        return priceB - priceA;
+      }));
+      setBoolArray(true)
+      calculateProfit()
+    }
+  }, [data]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -29,29 +43,21 @@ export default function Home() {
   const calculateProfit = () => {
     let difference = 0
     let formattedNumber = 0
-    if(sortedData != null){
-      difference = offerValue - sortedData[0].price.value
-      formattedNumber = difference.toFixed(2);
-    }
+    difference = data?.itemSummaries[0].price.value - offerValue
+    formattedNumber = difference.toFixed(2);
     setProfit(formattedNumber)
 
   }
  
-  const makeApiCall = async (value) => {
+  async function makeApiCall (value) {
     const response = await fetch('/api', {
       method: 'POST',
       body: JSON.stringify({ search: value})
     })
     const fetchedData = await response.json()
     setData(fetchedData)
-    calculateProfit()
   }
 
-  const sortedData = data?.itemSummaries.sort((a, b) => {
-    const priceA = parseFloat(a.price.value);
-    const priceB = parseFloat(b.price.value);
-    return priceB - priceA;
-  });
 
   return (
   <>
@@ -64,7 +70,7 @@ export default function Home() {
               type="number"
               value={offerValue}
               onChange={handleOfferChange}
-              placeholder="enter offer"> 
+              placeholder="their offer"> 
             </input>
             <input
               className="input-field"
@@ -83,7 +89,7 @@ export default function Home() {
         disableFlip={false}
         qrCodeSuccessCallback={onNewScanResult}
       />
-      {sortedData && <p className="p-text">{inputValue + '\'s being sold right now'}</p>}
+      {boolArr && <p className="p-text">What's being sold right now</p>}
       <div className="card-container">      
         {sortedData?.map(item => (
           <div key={item.itemId} className="card">
