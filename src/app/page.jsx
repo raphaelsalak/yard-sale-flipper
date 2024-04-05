@@ -89,7 +89,7 @@ export default function Home() {
         disableFlip={false}
         qrCodeSuccessCallback={onNewScanResult}
       />
-      {boolArr && <p className="p-text">What's being sold right now</p>}
+      {boolArr && <p className="p-text">What&apos;s being sold right now</p>}
       <div className="card-container">      
         {sortedData?.map(item => (
           <div key={item.itemId} className="card">
