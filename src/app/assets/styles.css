@@ -7,13 +7,14 @@
   }
   
   .input-field {
-    width: 300px;
+    width: calc(100% - 40px); /* Adjust width to fill container with padding */
+    max-width: 300px;
     height: 40px;
-    padding: 8px;
+    padding: 8px 20px; /* Added padding on left and right */
     margin-bottom: 20px;
-    margin-right: 20px;
     font-size: 16px;
   }
+
   .input-container{
     display: flex;
     flex-direction: column;
