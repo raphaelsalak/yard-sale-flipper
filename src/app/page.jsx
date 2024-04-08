@@ -12,6 +12,7 @@ export default function Home() {
   const [profit, setProfit] = useState('');
   const [sortedData, setSortedData] = useState([]);
   const [boolArr, setBoolArray] = useState(false);
+  const [scanError, setScanError] = useState(false);
 
   useEffect(() => {
     if (data && data.itemSummaries && data.itemSummaries.length > 0) {
@@ -23,6 +24,8 @@ export default function Home() {
       setSortedData(sorted);
       setBoolArray(true);
       calculateProfit();
+    } else {
+      setScanError(true);
     }
   }, [data]);
 
@@ -35,7 +38,12 @@ export default function Home() {
   };
 
   const onNewScanResult = (decodedText, decodedResult) => {
-    setInputValue(decodedText);
+    if (decodedText) {
+      setInputValue(decodedText);
+      setScanError(false);
+    } else {
+      setScanError(true);
+    }
   };
 
   const handleButtonClick = () => {
@@ -96,6 +104,7 @@ export default function Home() {
           qrCodeSuccessCallback={onNewScanResult}
         />
         {boolArr && <p className="p-text">What&apos;s being sold right now</p>}
+        {scanError && <p className="error-message">Could not find QR code. Please scan again.</p>}
         <div className="card-container">
           {sortedData.map(item => (
             <div key={item.itemId} className="card">
