@@ -50,6 +50,7 @@
 
   
   .card {
+    overflow: scroll;
     width: 200px;
     margin: 10px;
     border: 1px solid #ccc;

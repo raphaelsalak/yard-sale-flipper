@@ -11,7 +11,7 @@ export default function Home() {
   const [decodedText, setDecodedText] = useState('');
   const [profit, setProfit] = useState('');
   const [sortedData, setSortedData] = useState([]);
-  const [boolArr, setBoolArray] = useState(false);
+  const [boolArr, setBoolSortedArray] = useState(false);
   const [scanError, setScanError] = useState(false);
 
   useEffect(() => {
@@ -22,10 +22,8 @@ export default function Home() {
         return priceB - priceA;
       });
       setSortedData(sorted);
-      setBoolArray(true);
+      setBoolSortedArray(true);
       calculateProfit();
-    } else {
-      setScanError(true);
     }
   }, [data]);
 
@@ -40,9 +38,6 @@ export default function Home() {
   const onNewScanResult = (decodedText, decodedResult) => {
     if (decodedText) {
       setInputValue(decodedText);
-      setScanError(false);
-    } else {
-      setScanError(true);
     }
   };
 
@@ -64,10 +59,21 @@ export default function Home() {
         method: 'POST',
         body: JSON.stringify({ search: value })
       });
-      const fetchedData = await response.json();
-      setData(fetchedData);
+      if (response.ok) {
+        const fetchedData = await response.json()
+        setData(fetchedData)
+        //check if it's empty
+        if(fetchedData.itemSummaries.length > 0){
+          setScanError(false)
+        }
+        else{
+          setScanError(true)
+        }
+      }
+    
     } catch (error) {
       console.error('Error fetching data:', error);
+      setScanError(true)
       // Handle error appropriately, e.g., show a notification to the user
     }
   }
@@ -103,9 +109,9 @@ export default function Home() {
           disableFlip={false}
           qrCodeSuccessCallback={onNewScanResult}
         />
-        {boolArr && <p className="p-text">What&apos;s being sold right now</p>}
+        {!scanError && boolArr && <p className="p-text">What&apos;s being sold right now</p>}
         {scanError && <p className="error-message">Could not find QR code. Please scan again.</p>}
-        <div className="card-container">
+        {!scanError && <div className="card-container">
           {sortedData.map(item => (
             <div key={item.itemId} className="card">
               <img src={item.image.imageUrl} alt="Item" />
@@ -113,7 +119,8 @@ export default function Home() {
             </div>
           ))}
         </div>
-        {profit && <p className="p-text">Potential Profit: {profit}</p>}
+        }
+        {!scanError && profit && <p className="p-text">Potential Profit: {profit}</p>}
       </div>
     </>
   );
