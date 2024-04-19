@@ -81,7 +81,7 @@ export default function Home() {
   return (
 <>
   <div className="center-container">
-    <h1 className="my-10 text-4xl font-bold text-center text-blue-600">Yard Sale Flipper</h1>
+    <h1 className="my-2 text-4xl font-bold text-center text-blue-600">Yard Sale Flipper</h1>
     <div className="input-container">
       <div className="container2">
         <div className="container3">
