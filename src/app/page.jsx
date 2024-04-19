@@ -123,7 +123,7 @@ export default function Home() {
         </div>
       )}
     </div>
-    {!scanError && profit && <p className="p-text text-sm">Potential Profit: {profit}</p>}
+    {!scanError && profit && <p className="p-text text-md">Potential Profit: {profit}</p>}
   </div>
 </>
 
