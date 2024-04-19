@@ -79,49 +79,56 @@ export default function Home() {
   }
 
   return (
-    <>
-      <div className="center-container">
-        <h1 className="my-10 text-4xl font-bold text-center text-blue-600">Yard Sale Flipper </h1>
-        <div className="input-container">
-          <div className="container2">
-            <div className="container3">
-              <input
-                className="input-field"
-                type="number"
-                value={offerValue}
-                onChange={handleOfferChange}
-                placeholder="their offer"
-              />
-              <input
-                className="input-field"
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder="enter product name"
-              />
-            </div>
-            <button className="submit-button" onClick={handleButtonClick}>submit</button>
-          </div>
+<>
+  <div className="center-container">
+    <h1 className="my-10 text-4xl font-bold text-center text-blue-600">Yard Sale Flipper</h1>
+    <div className="input-container">
+      <div className="container2">
+        <div className="container3">
+          <input
+            className="input-field"
+            type="number"
+            value={offerValue}
+            onChange={handleOfferChange}
+            placeholder="their offer"
+          />
+          <input
+            className="input-field"
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="enter product name"
+          />
         </div>
-        <Html5QrcodePlugin
-          fps={10}
-          qrbox={250}
-          disableFlip={false}
-          qrCodeSuccessCallback={onNewScanResult}
-        />
-        {!scanError && boolArr && <p className="p-text">What&apos;s being sold right now</p>}
-        {scanError && <p className="error-message">Could not find QR code. Please scan again.</p>}
-        {!scanError && <div className="card-container">
-          {sortedData.map(item => (
-            <div key={item.itemId} className="card">
-              <img src={item.image.imageUrl} alt="Item" />
+        <button className="submit-button" onClick={handleButtonClick}>submit</button>
+      </div>
+    </div>
+    <Html5QrcodePlugin
+      fps={10}
+      qrbox={250}
+      disableFlip={false}
+      qrCodeSuccessCallback={onNewScanResult}
+    />
+    {!scanError && boolArr && <p className="p-text text-sm">Products in listing: </p>}
+    {scanError && <p className="error-message">Could not find QR code. Please scan again.</p>}
+    <div className="overflow-auto max-h-screen px-4"> {/* Add padding */}
+      {!scanError && (
+        <div className="grid grid-cols-1 gap-4">
+          {sortedData.map((item, index) => (
+            <div key={item.itemId} className={`card ${index === 0 ? 'first-card' : ''}`}>
+              <img src={item.image.imageUrl} alt="Item" className="w-full h-auto" />
               <p>{item.price.value} {item.price.currency}</p>
             </div>
           ))}
         </div>
-        }
-        {!scanError && profit && <p className="p-text">Potential Profit: {profit}</p>}
-      </div>
-    </>
+      )}
+    </div>
+    {!scanError && profit && <p className="p-text text-sm">Potential Profit: {profit}</p>}
+  </div>
+</>
+
+
+
+
   );
 }
