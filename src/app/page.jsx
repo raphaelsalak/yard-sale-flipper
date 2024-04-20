@@ -109,7 +109,7 @@ export default function Home() {
       disableFlip={false}
       qrCodeSuccessCallback={onNewScanResult}
     />
-    {!scanError && boolArr && <p className="p-text text-sm">Products in listing: </p>}
+    {!scanError && boolArr && <p className="p-text text-xs">Products in listing: </p>}
     {scanError && <p className="error-message">Could not find QR code. Please scan again.</p>}
     <div className="overflow-auto max-h-screen px-4"> {/* Add padding */}
       {!scanError && (
@@ -123,7 +123,7 @@ export default function Home() {
         </div>
       )}
     </div>
-    {!scanError && profit && <p className="p-text text-md">Potential Profit: {profit}</p>}
+    {!scanError && profit && <p className="p-text text-xs">Potential Profit: {profit}</p>}
   </div>
 </>
 
