@@ -9,7 +9,7 @@ Features added:
 - [x] Ebay api integration
 
 ![demo](https://youtube.com/shorts/aASZuZv8cnI?feature=share)
-![alt text](image.png)
+![https://youtube.com/shorts/aASZuZv8cnI?feature=share]
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
