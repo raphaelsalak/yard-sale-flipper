@@ -1,8 +1,6 @@
 # What is it? (MVP)
 A web application that integrates ebay api and barcode reader html image scanner to see if a product is profitable quickly. 
 
-URL: https://yard-sale-flipper-nextjs-wclg.vercel.app/
-
 Features added:
 - [x] Barcode image scanner integration
 - [x] Web camera image scanner integration
@@ -10,6 +8,7 @@ Features added:
 
 https://github.com/raphaelsalak/yard-sale-flipper-nextjs/assets/61638085/1d6624c6-6ee4-45e3-acbe-688e7d38c6da
 
+URL: https://yard-sale-flipper-nextjs.vercel.app
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
