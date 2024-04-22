@@ -8,7 +8,7 @@ Features added:
 - [x] Web camera image scanner integration
 - [x] Ebay api integration
 
-![alt text](demo.mp4)
+![demo](https://youtube.com/shorts/aASZuZv8cnI?feature=share)
 ![alt text](image.png)
 
 
